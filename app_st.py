@@ -112,5 +112,5 @@ def print_pdf(pdf_file_path, printer_name=None):
 # Example usage
 pdf_file_path = "output.pdf"
 printer_name = "Your_Printer_Name"  # Change this to your printer's name
-st.button("Print PDF", on_click=print_pdf(pdf_file_path, printer_name))
+st.button("Print PDF", on_click=lambda: print_pdf(pdf_file_path, printer_name))
 
