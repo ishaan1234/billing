@@ -128,3 +128,12 @@ pdf_file_path_2 = os.path.join(script_directory, "output.pdf")
 cb2 = st.checkbox("Open PDF")
 if cb2:
     open_pdf_in_new_tab(pdf_file_path_2)
+#########################################################################
+def download_pdf(pdf_file_path):
+    with open(pdf_file_path, "rb") as file:
+        pdf_bytes = file.read()
+    st.download_button(label="Download PDF", data=pdf_bytes, file_name="output.pdf", mime="application/pdf")
+
+# Example usage
+pdf_file_path = "output.pdf"  # Replace this with the path to your PDF file
+download_pdf(pdf_file_path)
