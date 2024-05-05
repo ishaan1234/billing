@@ -5,6 +5,7 @@ from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 from streamlit_pdf_viewer import pdf_viewer
+import webbrowser
 
 # Function to add tables to PDF
 def add_tables_to_pdf(original_pdf_path, output_pdf_path, data_table1, data_table2, data_table3):
@@ -110,7 +111,20 @@ def print_pdf(pdf_file_path, printer_name=None):
     # subprocess.run(['AcroRd32', '/t', pdf_file_path, printer_option], shell=True)
 
 # Example usage
-pdf_file_path = "output.pdf"
+pdf_file_path_1 = "output.pdf"
 printer_name = "Your_Printer_Name"  # Change this to your printer's name
-st.button("Print PDF", on_click=lambda: print_pdf(pdf_file_path, printer_name))
+cb = st.checkbox("Print PDF")
+if cb:
+    print_pdf(pdf_file_path_1, printer_name)
 
+def open_pdf_in_new_tab(pdf_file_path):
+    url = f"file:///{pdf_file_path}"
+    webbrowser.open_new_tab(url)
+
+# Example usage Replace this with the path to your PDF file
+script_directory = os.path.dirname(os.path.abspath(__file__))
+pdf_file_path_2 = os.path.join(script_directory, "output.pdf")
+
+cb2 = st.checkbox("Open PDF")
+if cb2:
+    open_pdf_in_new_tab(pdf_file_path_2)
